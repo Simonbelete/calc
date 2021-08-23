@@ -18,7 +18,6 @@ export default async function handler(
     const result = await getUser(req.headers.authorization?.split("Bearer")[1]);
     res.status(200).send({ data: result, status: 200 });
   } else if (req.method === "PUT") {
-    console.log(req.body);
     const result = await updateUser(
       req.headers.authorization?.split("Bearer")[1],
       req.body

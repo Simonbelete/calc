@@ -20,9 +20,18 @@ export const createUser = async (body: any): Promise<IToken | null> => {
   return await User.create(user)
     .then((data) => {
       const nu = data as unknown as IUser;
-      const ACCESS_TOKEN = jwt.sign(data.toJSON, process.env.SECRET_KEY || "", {
-        expiresIn,
-      });
+      const ACCESS_TOKEN = jwt.sign(
+        {
+          id: nu.id,
+          firstName: nu.firstName,
+          lastName: nu.lastName,
+          nick: nu.nick,
+        },
+        process.env.SECRET_KEY || "",
+        {
+          expiresIn,
+        }
+      );
       const result: IToken = {
         token: ACCESS_TOKEN,
         expiresIn: expiresIn,

@@ -55,14 +55,13 @@ const UpdateProfile = () => {
     axios
       .get("/api/users")
       .then((response) => {
-        console.log(response.data);
         if (response.status === 200) {
           setValue("firstName", response.data.data.firstName);
           setValue("lastName", response.data.data.lastName);
         }
       })
       .catch((error) => {});
-  }, []);
+  }, [setValue]);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -107,13 +106,18 @@ const UpdateProfile = () => {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                {...register("password", { required: false })}
+                {...register("password", {
+                  required: false,
+                  pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*d)[a-zA-Zd]{8,}$/i,
+                })}
                 variant="outlined"
                 fullWidth
                 name="password"
                 label="Password"
                 type="password"
                 id="password"
+                helperText={""}
+                error={Boolean(errors.password)}
                 autoComplete="current-password"
               />
             </Grid>
