@@ -1,24 +1,18 @@
 
 ## Getting Started
 
+Checkout live site [HERE](https://simonbelete-calc.herokuapp.com/).
+
 ## Production
 
 Production server run:
 
 ```bash
 $ npm install
-```
 
-Build for production
-
-```bash
 $ npm run build
-```
 
-Start Production server
-
-```bash
-$ npm start
+$ npm run start
 ```
 
 ## Development
